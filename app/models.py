@@ -1,7 +1,7 @@
 from sqlalchemy import Column, Integer, String
 from sqlalchemy.orm import relationship
 from app.database import Base
-from sqlalchemy import Column, Integer, String, Boolean, DataTime, ForeignKey
+from sqlalchemy import Column, Integer, String, Boolean, DateTime, ForeignKey
 from sqlalchemy.sql import func
 
 class User(Base):
@@ -20,7 +20,7 @@ class Todo(Base):
     title = Column(String, index=True)
     details = Column(String, nullable=True)
     completed = Column(Boolean, default=False)
-    createdAt = Column(DataTime, default=func.now())
+    createdAt = Column(DateTime, default=func.now())
     updataAt = Column(DateTime, default=func.now(), onupdate=func.now())
     user_id = Column(Integer, ForeignKey("users.id"), nullable=False)
 
