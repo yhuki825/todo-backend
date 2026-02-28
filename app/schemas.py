@@ -1,6 +1,7 @@
 from pydantic import BaseModel
 from typing import Optional
 from datetime import datetime
+from pydantic import BaseModel, EmailStr
 
 class TodoBase(BaseModel):
     title: str
@@ -14,6 +15,21 @@ class TodoResponse(TodoBase):
     createdAt: datetime
     updatedAt: Optional[datetime] = None
     completed: bool
+
+    class Config:
+        from_attributes = True
+
+class UserCreate(BaseModel):
+    username: str
+    email: EmailStr
+    password: str
+
+    class Config:
+        from_attributes = True
+
+class UserLogin(BaseModel):
+    username: str
+    password: str
 
     class Config:
         from_attributes = True
